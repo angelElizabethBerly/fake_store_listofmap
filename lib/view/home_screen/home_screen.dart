@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:fake_store_listofmap/controller/cart_screen_controller.dart';
 import 'package:fake_store_listofmap/controller/home_screen_controller.dart';
 import 'package:fake_store_listofmap/global_widgets/reusable_loading_widget.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 subtitle:
                     Text(homeScreenState.productsList[index].price.toString()),
                 trailing: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.shopping_cart_checkout)),
+                    onPressed: () {
+                      context.read<CartScreenController>().addToCart(
+                          homeScreenState.productsList[index], context);
+                    },
+                    icon: Icon(Icons.shopping_cart_checkout)),
               ),
             ),
     );
